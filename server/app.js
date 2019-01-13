@@ -1,8 +1,15 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
+const mongoose = require('mongoose');
 const schema = require('./schema/schema');
 
 const app = express();
+
+// Connecting to mongodb
+mongoose.connect('mongodb://localhost/booksafe', { useNewUrlParser: true }, (err) => {
+  if (err) throw err;
+  console.log('connecting to mongodb');
+});
 
 // Middleware for graphQl
 app.use('/graphql', graphqlHTTP({

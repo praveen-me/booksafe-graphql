@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo'
-
-import './App.css';
 import BookList from './components/BookList';
 import AddBook from './components/AddBook';
 

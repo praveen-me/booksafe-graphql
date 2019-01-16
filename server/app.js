@@ -1,6 +1,7 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const schema = require('./schema/schema');
 
 const app = express();
@@ -11,11 +12,15 @@ mongoose.connect('mongodb://localhost/booksafe', { useNewUrlParser: true }, (err
   console.log('connecting to mongodb');
 });
 
+// Essential Middlewares
+app.use(cors());
+
 // Middleware for graphQl
 app.use('/graphql', graphqlHTTP({
   schema,
   graphiql: true,
 }));
+
 
 app.get('/', (req, res) => {
   res.send('server is running');
